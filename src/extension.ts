@@ -11,8 +11,7 @@ export function activate(context: vscode.ExtensionContext): void {
   console.log('[TodoLane] Activating...');
 
   // --- Core services ---
-  const store = new TodoStore();
-  store.initialize();
+  const store = new TodoStore(context);
 
   const treeProvider = new TodoTreeProvider(store);
   const commands = new TodoCommands(store, treeProvider);
