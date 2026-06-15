@@ -1,0 +1,160 @@
+{
+  "name": "todolane",
+  "displayName": "TodoLane",
+  "description": "A powerful TODO manager for VS Code — create, track, and manage todos with priorities, due dates, reminders, and status tracking. Zero dependencies, fully offline.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "publisher": "SunnyPandit",
+  "icon": "media/icon.png",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "todo",
+    "task",
+    "manager",
+    "productivity",
+    "checklist",
+    "reminder",
+    "typescript",
+    "developer-tools"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "20.x",
+    "@types/vscode": "^1.74.0",
+    "typescript": "^5.1.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SunnyPandit26/todolane-vscode-extension.git"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "todolane.newTodo",
+        "title": "TodoLane: New Todo",
+        "icon": "$(add)"
+      },
+      {
+        "command": "todolane.editTodo",
+        "title": "Edit Todo",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "todolane.markDone",
+        "title": "Mark Done",
+        "icon": "$(check)"
+      },
+      {
+        "command": "todolane.cancelTodo",
+        "title": "Cancel Todo",
+        "icon": "$(close)"
+      },
+      {
+        "command": "todolane.deleteTodo",
+        "title": "Delete Todo",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "todolane.filterAll",
+        "title": "Show All",
+        "icon": "$(list-unordered)"
+      },
+      {
+        "command": "todolane.filterPending",
+        "title": "Show Pending",
+        "icon": "$(circle-outline)"
+      },
+      {
+        "command": "todolane.filterDone",
+        "title": "Show Done",
+        "icon": "$(check-all)"
+      },
+      {
+        "command": "todolane.filterCancelled",
+        "title": "Show Cancelled",
+        "icon": "$(circle-slash)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "todolane-explorer",
+          "title": "TodoLane",
+          "icon": "media/activity-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "todolane-explorer": [
+        {
+          "id": "todolane.todoView",
+          "name": "TODOs"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "todolane.newTodo",
+          "when": "view == todolane.todoView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "todolane.filterAll",
+          "when": "view == todolane.todoView",
+          "group": "1_filter@1"
+        },
+        {
+          "command": "todolane.filterPending",
+          "when": "view == todolane.todoView",
+          "group": "1_filter@2"
+        },
+        {
+          "command": "todolane.filterDone",
+          "when": "view == todolane.todoView",
+          "group": "1_filter@3"
+        },
+        {
+          "command": "todolane.filterCancelled",
+          "when": "view == todolane.todoView",
+          "group": "1_filter@4"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "todolane.markDone",
+          "when": "view == todolane.todoView && viewItem == todo-pending",
+          "group": "inline@1"
+        },
+        {
+          "command": "todolane.editTodo",
+          "when": "view == todolane.todoView && viewItem == todo-pending",
+          "group": "inline@2"
+        },
+        {
+          "command": "todolane.cancelTodo",
+          "when": "view == todolane.todoView && viewItem == todo-pending",
+          "group": "inline@3"
+        },
+        {
+          "command": "todolane.deleteTodo",
+          "when": "view == todolane.todoView && viewItem =~ /^todo-/",
+          "group": "inline@4"
+        }
+      ]
+    }
+  }
+}
