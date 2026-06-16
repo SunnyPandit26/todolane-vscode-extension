@@ -1,5 +1,5 @@
 {
-  "name": "todolane",
+  "name": "todo-lane",
   "displayName": "TodoLane",
   "description": "A powerful TODO manager for VS Code — create, track, and manage todos with priorities, due dates, reminders, and status tracking. Zero dependencies, fully offline.",
   "version": "1.0.0",
